@@ -53,7 +53,7 @@ const Home = () => {
           {animations.map((animation, index) => (
             <li
               key={index}
-              className="flex flex-row gap-2 p-5 hover:bg-zinc-800/50 rounded-lg"
+              className="flex flex-row gap-2 p-5 ease-in-out hover:bg-zinc-800/50 rounded-xl"
             >
               <p>
                 <span className="text-sm font-bold text-zinc-50">

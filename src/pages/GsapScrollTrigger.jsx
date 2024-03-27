@@ -1,5 +1,37 @@
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const GsapScrollTrigger = () => {
   // TODO: Implement the gsap scroll trigger
+  const scrollRef = useRef();
+
+  useGSAP(() => {
+    const boxes = gsap.utils.toArray(scrollRef.current.children);
+    boxes.forEach((box) => {
+      gsap.to(box, {
+        x: 250,
+        rotation: 360,
+        borderRadius: "100%",
+        duration: 2,
+        scale: 1.5,
+        scrollTrigger:{
+          trigger: box,
+          start: "bottom bottom",
+          end: "top 25%",
+          scrub: true,
+        },
+        ease: "power1.inOut",
+        stagger: {
+          amount: 2.5,
+          axis: "x"
+        }
+      });
+    });
+  }, {scope: scrollRef});
 
   return (
     <main>
@@ -51,7 +83,7 @@ const GsapScrollTrigger = () => {
         </svg>
       </div>
 
-      <div className="mt-20 w-full h-screen">
+      <div ref={scrollRef} className="mt-20 w-full h-screen">
         <div
           id="scroll-pink"
           className="scroll-box w-20 h-20 rounded-lg bg-pink-500"

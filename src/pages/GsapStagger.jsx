@@ -1,5 +1,27 @@
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 const GsapStagger = () => {
   // TODO: Implement the gsap.stagger() method
+  const targets = ".stagger-box";
+
+  useGSAP(() => {
+    gsap.to(targets, {
+      y: 250,
+      rotation: 360,
+      borderRadius: "50%",
+      repeat: -1,
+      duration: 1.25,
+      yoyo: true,
+      stagger: {
+        amount: 0.25,
+        axis: "y",
+        grid: [2, 1],
+        ease: "circ.inOut",
+        from: "start",
+      },
+    });
+  }, []);
 
   return (
     <main>
